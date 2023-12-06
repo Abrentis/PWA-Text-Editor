@@ -24,9 +24,8 @@ warmStrategyCache({
   strategy: pageCache,
 });
 
- // TODO: Implement asset caching
  registerRoute(
-  // Here we define the callback function that will filter the requests we want to cache (in this case, JS and CSS files)
+  // Define the callback function that will filter the requests to cache (in this case, JS and CSS files)
   ({ request }) => ['style', 'script', 'worker'].includes(request.destination),
   new StaleWhileRevalidate({
     // Name of the cache storage.
@@ -39,7 +38,3 @@ warmStrategyCache({
     ],
   })
 );
-
-// Allows application to start in offline mode if necessary
-setDefaultHandler(new NetworkOnly());
-offlineFallback();
